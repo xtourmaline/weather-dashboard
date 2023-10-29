@@ -1,0 +1,23 @@
+* {
+    margin: 0px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    margin: 10px 15px;
+}
+
+h2 {
+    margin: 10px 15px;
+}
+
+form{
+    margin: 15px;
+}
+button {
+    margin: 10px 0px;
+}
+
+.card {
+    margin: 0px 0px 15px 0px;
+}
