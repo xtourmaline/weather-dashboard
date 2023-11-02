@@ -22,8 +22,7 @@ function saveCityInput(cityInput) {
     // update local storage
     localStorage.setItem("cityInputs", JSON.stringify(cityInputs));
 
-
-    // Uudate the displayed city inputs
+    // uudate the displayed city inputs
     displayCityInputs(cityInputs);
 }
 
@@ -38,20 +37,6 @@ function displayCityInputs(inputs) {
         cityList.prepend(`<button>${input}</button>`);
     });
 }
-
-displayCityInputs(JSON.parse(localStorage.getItem("cityInputs")) || []);
-
-// when search button is pressed
-btnSearch.on("click", function () {
-    search();
-});
-
-// when one of the search history button is pressed
-$("#search-list").on("click", "button", function () {
-    let cityInput = $(this).text();
-    $("#city").val(cityInput);
-    search();
-});
 
 function search() {
     let cityInput = $("#city").val();
@@ -101,7 +86,7 @@ function getLocation(cityInput, apiKey) {
         });
 }
 
-// getting the weather
+// getting the weather and also displaying it
 function getWeather(lon, lat, apiKey) {
     let weather = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
@@ -116,7 +101,7 @@ function getWeather(lon, lat, apiKey) {
 
             let forecastContent = `
                 <img src="http://openweathermap.org/img/w/${data.list[0].weather[0].icon}.png">
-                <p class="card-text">Temp: ${data.list[0].main.temp} ºC</p>
+                <p class="card-text">Temp: ${((data.list[0].main.temp - 273.15) * 9/5 + 32).toFixed(2)} ºF</p>
                 <p class="card-text">Wind: ${data.list[0].wind.speed} mph</p>
                 <p class="card-text">Humidity: ${data.list[0].main.humidity} g/kg</p>
             `;
@@ -131,7 +116,7 @@ function getWeather(lon, lat, apiKey) {
             for (let i = 1; i < 6; i++) {
                 forecastContent = `
                     <img src="http://openweathermap.org/img/w/${data.list[count].weather[0].icon}.png">
-                    <p class="card-text">Temp: ${data.list[count].main.temp} ºC</p>
+                    <p class="card-text">Temp: ${((data.list[count].main.temp - 273.15) * 9/5 + 32).toFixed(2)} ºF</p>
                     <p class="card-text">Wind: ${data.list[count].wind.speed} mph</p>
                     <p class="card-text">Humidity: ${data.list[count].main.humidity} g/kg</p>
                 `;
@@ -144,3 +129,26 @@ function getWeather(lon, lat, apiKey) {
             }
         });
 }
+
+
+displayCityInputs(JSON.parse(localStorage.getItem("cityInputs")) || []);
+
+// when search button is pressed
+btnSearch.on("click", function () {
+    search();
+});
+
+// when enter key is pressed
+$("#city").on("keypress", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        search();
+    }
+});
+
+// when one of the search history button is pressed
+$("#search-list").on("click", "button", function () {
+    let cityInput = $(this).text();
+    $("#city").val(cityInput);
+    search();
+});
