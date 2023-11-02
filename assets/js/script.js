@@ -10,10 +10,12 @@ btnSearch.on("click", function (event) {
         alert("Enter a city");
     } else {
         cityInput = $("input").val();
-        console.log(cityInput);
+        console.log(cityInput);  // FOR TESTING PURPOSES!! DELETE LATER
     }
 
-    getLocation(cityInput, apiKey);
+    let [name, lon, lat] = getLocation(cityInput, apiKey); 
+    
+    console.log(name, lon, lat) // FOR TESTING PURPOSES!! DELETE LATER
 })
 
 // getting the lon, lat, and name from the API response
@@ -29,7 +31,7 @@ function getLocation(cityInput, apiKey) {
         let lon = data[0].lon;
         let lat = data[0].lat;
 
-        console.log(name, lon, lat);
+        return [name, lon, lat]
     })
 }
 
