@@ -50,13 +50,10 @@ btnSearch.on("click", function () {
     if (cityInput === "") {
         alert("Enter a city");
     } else {
-        console.log(cityInput);     // FOR TESTING PURPOSES!! DELETE LATER
-
         // calls function getLocation
         getLocation(cityInput, apiKey)
             .then(data => {
                 const [name, lon, lat] = data;
-                console.log(name, lon, lat);
 
                 // calls function getWeather
                 getWeather(lon, lat, apiKey);
@@ -89,8 +86,6 @@ function getLocation(cityInput, apiKey) {
             let name = data[0].name;
             let lon = data[0].lon;
             let lat = data[0].lat;
-
-            console.log(data) // FOR TESTING PURPOSES!! DELETE LATER
 
             return [name, lon, lat]; // return the data as an array
         });
@@ -132,8 +127,7 @@ function getWeather(lon, lat, apiKey) {
                 `;
 
                 count += 8;
-                console.log(forecastContent)
-
+    
                 let $dayElement = $(`#day${i}`);
                 $dayElement.children(":not(:first-child)").remove();
                 $dayElement.append(forecastContent);
