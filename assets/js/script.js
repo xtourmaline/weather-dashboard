@@ -118,9 +118,13 @@ function getWeather(lon, lat, apiKey) {
             $("#day0").append(forecastContent);
             
             let count = 7;
+            let newDate = dayjs(data.list[0].dt_txt);
 
             for (let i = 1; i < 6; i++) {
+                newDate = newDate.add(1, 'day');
+
                 forecastContent = `
+                    <p class="card-text"> ${newDate.format("MM/DD/YYYY")} </p>
                     <img src="https://openweathermap.org/img/w/${data.list[count].weather[0].icon}.png">
                     <p class="card-text">Temp: ${(((data.list[count].main.temp - 273.15) * 9/5) + 32).toFixed(2)} ºF</p>
                     <p class="card-text">Wind: ${data.list[count].wind.speed} mph</p>
