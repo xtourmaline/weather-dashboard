@@ -1,45 +1,48 @@
 const apiKey = "8c8324b39583c855b4fe51feb2f0e639";
-let btnSearch = $("#search")
+let btnSearch = $("#search");
 
-btnSearch.on("click", function () {
-    let cityInput = $("#citySearch").value.trim();
-  
+btnSearch.on("click", function (event) {
+    
+    let cityInput = $("#city").val();
+
     //checks to see if the user enters anything
     if (cityInput === "") {
-      alert("Please enter a city");
+        alert("Enter a city");
     } else {
-      cityInput = $("#citySearch").val();
+        cityInput = $("input").val();
+        console.log(cityInput)
+        event.preventDefault()
     }
 })
 
-// getting the lon, lat, and name from the API response
-function getLocation() {
-    let cityCoordinates = `http://api.openweathermap.org/geo/1.0/direct?q=${cityInput}&limit=1&appid=${apiKey}`
+// // getting the lon, lat, and name from the API response
+// function getLocation() {
+//     let cityCoordinates = `http://api.openweathermap.org/geo/1.0/direct?q=${cityInput}&limit=1&appid=${apiKey}`
     
-    fetch(cityCoordinates)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) {
-        let name = data[0].name;
-        let lon = data[0].lon;
-        let lat = data[0].lat;
+//     fetch(cityCoordinates)
+//     .then(function (response) {
+//         return response.json();
+//     })
+//     .then(function (data) {
+//         let name = data[0].name;
+//         let lon = data[0].lon;
+//         let lat = data[0].lat;
 
-        return name, lon, lat
-    })
-}
+//         return name, lon, lat
+//     })
+// }
 
-let name, lon, lat = getLocation()
+// let name, lon, lat = getLocation()
 
-// getting the weather
-function getWeather() {
-    let weather = `api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+// // getting the weather
+// function getWeather() {
+//     let weather = `api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
-    fetch(weather)
-        .then(function (response) {
-            return response.json();
-    })
-        .then(function (data) {
-            console.log(data);
-    });
-}
+//     fetch(weather)
+//         .then(function (response) {
+//             return response.json();
+//     })
+//         .then(function (data) {
+//             console.log(data);
+//     });
+// }
