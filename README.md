@@ -3,7 +3,7 @@
 
 ## Description
 
-This project is a weather dashboard that will display the weather details of whatever city you enter. This is my first time using a server API which made the project quite difficult as I had to learn how to get the information and This is a timed quiz website on the fundamentals of JavaScript. This project was quite challenging for me as this is the first time I incorporated JavaScript to my website myself. However, I was able to use what I already knew about coding prior to build upon that. As a result, my understanding of JavaScript and how it can be used in websites increased.
+This project is a weather dashboard that will display the weather details of whatever city you enter. This is my first time using a server API which made the project quite difficult as I had to learn how to get the information and then format it to display on my website. Additionally, I used a CSS framework for the first time. Compared to plain CSS, it is so much easier to use. It didn't take me forever to align everything on my page like it normally did. I am very proud of my work on this project.
 
 Check out my website here: https://xtourmaline.github.io/weather-dashboard/
 
