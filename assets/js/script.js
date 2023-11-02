@@ -73,7 +73,7 @@ function search() {
 
 // FUNCTION: getting the lon, lat, and name from the API response
 function getLocation(cityInput, apiKey) {
-    const cityCoordinates = `http://api.openweathermap.org/geo/1.0/direct?q=${cityInput}&limit=1&appid=${apiKey}`;
+    const cityCoordinates = `https://api.openweathermap.org/geo/1.0/direct?q=${cityInput}&limit=1&appid=${apiKey}`;
     
     // returns the fetch promise
     return fetch(cityCoordinates)
