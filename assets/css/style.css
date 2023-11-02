@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
 /* Universal Selectors */
 * {
     margin: 0px;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;;
     color: aliceblue;
 }
 
@@ -39,8 +41,19 @@ button {
     background-color: var(--med);
 }
 
+button:hover {
+    background-color: var(--light);
+    color: var(--dark);
+}
+
 .btn-primary {
     margin: 10px 0px;
+    background-color: var(--med);
+    color: var(--dark);
+}
+
+.btn-primary:hover {
+    background-color: #9BBEC8;
 }
 
 #left {
@@ -53,7 +66,17 @@ button {
   }
 
 /* Right Side of Page */
+.currentForecastCard{
+    background-color: var(--light);
+}
 
+.currentForecastCard h3{
+    color: var(--dark);
+}
+
+.currentForecastCard p{
+    color: var(--dark);
+}
 
 .futureForcastCard {
     background-color: var(--dark);
