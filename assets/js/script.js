@@ -1,41 +1,51 @@
 const apiKey = "8c8324b39583c855b4fe51feb2f0e639";
 let btnSearch = $("#search");
 
-btnSearch.on("click", function (event) {
-    
+// occurs when button is pressed
+btnSearch.on("click", function () {
     let cityInput = $("#city").val();
 
     //checks to see if the user enters anything
     if (cityInput === "") {
         alert("Enter a city");
     } else {
-        cityInput = $("input").val();
-        console.log(cityInput);  // FOR TESTING PURPOSES!! DELETE LATER
-    }
+        console.log(cityInput);     // FOR TESTING PURPOSES!! DELETE LATER
 
-    let [name, lon, lat] = getLocation(cityInput, apiKey); 
-    
-    console.log(name, lon, lat) // FOR TESTING PURPOSES!! DELETE LATER
+        getLocation(cityInput, apiKey)
+            .then(data => {
+                const [name, lon, lat] = data;
+                console.log(name, lon, lat);
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    }
 })
 
 // getting the lon, lat, and name from the API response
 function getLocation(cityInput, apiKey) {
-    let cityCoordinates = `http://api.openweathermap.org/geo/1.0/direct?q=${cityInput}&limit=1&appid=${apiKey}`
+    let cityCoordinates = `http://api.openweathermap.org/geo/1.0/direct?q=${cityInput}&limit=1&appid=${apiKey}`;
     
-    fetch(cityCoordinates)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) {
-        let name = data[0].name;
-        let lon = data[0].lon;
-        let lat = data[0].lat;
+    // returns the fetch promise
+    return fetch(cityCoordinates)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            return response.json();
+        })
+        .then(data => {
+            let name = data[0].name;
+            let lon = data[0].lon;
+            let lat = data[0].lat;
 
-        return [name, lon, lat]
-    })
+            console.log(data) // FOR TESTING PURPOSES!! DELETE LATER
+
+            return [name, lon, lat]; // return the data as an array
+        });
 }
 
-// let name, lon, lat = getLocation()
+
 
 // // getting the weather
 // function getWeather() {
