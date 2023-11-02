@@ -17,7 +17,10 @@ function saveCityInput(cityInput) {
 // function to display saved city inputs
 function displayCityInputs(inputs) {
     const cityList = $("#search-list");
-    cityList.empty()
+    cityList.empty();
+
+    inputs.reverse();
+
     inputs.forEach(input => {
         cityList.append(`<button>${input}</button>`);
     });
@@ -80,19 +83,6 @@ function getLocation(cityInput, apiKey) {
 }
 
 // getting the weather
-function getWeather(lon, lat, apiKey) {
-    let weather = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
-
-    fetch(weather)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            console.log(data);  // FOR TESTING PURPOSES!! DELETE LATER
-        });
-}
-
-
 function getWeather(lon, lat, apiKey) {
     let weather = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
