@@ -10,27 +10,28 @@ btnSearch.on("click", function (event) {
         alert("Enter a city");
     } else {
         cityInput = $("input").val();
-        console.log(cityInput)
-        event.preventDefault()
+        console.log(cityInput);
     }
+
+    getLocation(cityInput, apiKey);
 })
 
-// // getting the lon, lat, and name from the API response
-// function getLocation() {
-//     let cityCoordinates = `http://api.openweathermap.org/geo/1.0/direct?q=${cityInput}&limit=1&appid=${apiKey}`
+// getting the lon, lat, and name from the API response
+function getLocation(cityInput, apiKey) {
+    let cityCoordinates = `http://api.openweathermap.org/geo/1.0/direct?q=${cityInput}&limit=1&appid=${apiKey}`
     
-//     fetch(cityCoordinates)
-//     .then(function (response) {
-//         return response.json();
-//     })
-//     .then(function (data) {
-//         let name = data[0].name;
-//         let lon = data[0].lon;
-//         let lat = data[0].lat;
+    fetch(cityCoordinates)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        let name = data[0].name;
+        let lon = data[0].lon;
+        let lat = data[0].lat;
 
-//         return name, lon, lat
-//     })
-// }
+        console.log(name, lon, lat);
+    })
+}
 
 // let name, lon, lat = getLocation()
 
