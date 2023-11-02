@@ -35,15 +35,25 @@ function displayCityInputs(inputs) {
     inputs.reverse();
 
     inputs.forEach(input => {
-        // cityList.append(`<button>${input}</button>`);
         cityList.prepend(`<button>${input}</button>`);
     });
 }
 
 displayCityInputs(JSON.parse(localStorage.getItem("cityInputs")) || []);
 
-// occurs when button is pressed
+// when search button is pressed
 btnSearch.on("click", function () {
+    search();
+});
+
+// when one of the search history button is pressed
+$("#search-list").on("click", "button", function () {
+    let cityInput = $(this).text();
+    $("#city").val(cityInput);
+    search();
+});
+
+function search() {
     let cityInput = $("#city").val();
 
     //checks to see if the user enters anything
@@ -68,7 +78,7 @@ btnSearch.on("click", function () {
                 console.error("Error:", error);
             });
     }
-})
+}
 
 // getting the lon, lat, and name from the API response
 function getLocation(cityInput, apiKey) {
