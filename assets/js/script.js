@@ -11,10 +11,14 @@ btnSearch.on("click", function () {
     } else {
         console.log(cityInput);     // FOR TESTING PURPOSES!! DELETE LATER
 
+        // calls function getLocation
         getLocation(cityInput, apiKey)
             .then(data => {
                 const [name, lon, lat] = data;
                 console.log(name, lon, lat);
+
+                // calls function getWeather
+                getWeather(lon, lat, apiKey);
             })
             .catch(error => {
                 console.error("Error:", error);
@@ -45,17 +49,15 @@ function getLocation(cityInput, apiKey) {
         });
 }
 
+// getting the weather
+function getWeather(lon, lat, apiKey) {
+    let weather = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
-
-// // getting the weather
-// function getWeather() {
-//     let weather = `api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
-
-//     fetch(weather)
-//         .then(function (response) {
-//             return response.json();
-//     })
-//         .then(function (data) {
-//             console.log(data);
-//     });
-// }
+    fetch(weather)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+        });
+}
