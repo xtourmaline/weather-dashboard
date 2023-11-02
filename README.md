@@ -11,7 +11,6 @@ Check out my website here: https://xtourmaline.github.io/weather-dashboard/
 
 - [Installation](#installation)
 - [Photos](#photos)
-- [Credits](#credits)
 - [License](#license)
 
 ## Installation
