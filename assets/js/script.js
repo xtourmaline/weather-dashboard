@@ -2,15 +2,28 @@ const apiKey = "8c8324b39583c855b4fe51feb2f0e639";
 let btnSearch = $("#search");
 
 function saveCityInput(cityInput) {
-    const cityInputs = JSON.parse(localStorage.getItem("cityInputs")) || [];
+    let cityInputs = JSON.parse(localStorage.getItem("cityInputs")) || [];
 
-    // checks whether the city is in the list, prevents duplicates
-    if (!cityInputs.includes(cityInput)) {
-        cityInputs.push(cityInput);
-        localStorage.setItem("cityInputs", JSON.stringify(cityInputs));
+    // remove city from list if already exists
+    const existingIndex = cityInputs.indexOf(cityInput);
+    if (existingIndex !== -1) {
+        cityInputs.splice(existingIndex, 1);
     }
 
-    // Update the displayed city inputs
+    // Add the city at the beginning of the list
+    cityInputs.unshift(cityInput);
+
+    // limits the search history to only 5 recent searches
+    const maxCities = 5;
+    if (cityInputs.length > maxCities) {
+        cityInputs.pop();
+    }
+
+    // update local storage
+    localStorage.setItem("cityInputs", JSON.stringify(cityInputs));
+
+
+    // Uudate the displayed city inputs
     displayCityInputs(cityInputs);
 }
 
@@ -22,7 +35,8 @@ function displayCityInputs(inputs) {
     inputs.reverse();
 
     inputs.forEach(input => {
-        cityList.append(`<button>${input}</button>`);
+        // cityList.append(`<button>${input}</button>`);
+        cityList.prepend(`<button>${input}</button>`);
     });
 }
 
@@ -91,12 +105,6 @@ function getWeather(lon, lat, apiKey) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);  // FOR TESTING PURPOSES!! DELETE LATER
-
-            console.log(data.list[0])
-            console.log(data.list[0].weather[0])
-            console.log(data.list[0].weather[0].description)
-
             let date = `
                 <p>${dayjs(data.list[0].dt_txt).format("MM/DD/YYYY")}</p>
             `
