@@ -33,8 +33,8 @@
         <!-- right column of page -->
         <div class="col-md-8">
             <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title">City Name</h3>
+                <div class="card-body" id="day0">
+                    <h3 class="card-title" id="city-name">City Name</h3>
                     <p>img placeholder</p>
                     <p class="card-text">Temp: __</p>
                     <p class="card-text">Wind: __</p>
@@ -42,12 +42,12 @@
                 </div>
             </div>
 
-            <!-- the forecast for the next 6 days -->
-            <h3>6-Day Forecast:</h3>
+            <!-- the forecast for the next 5 days -->
+            <h3>5-Day Forecast:</h3>
             <div class="row">
                 <div class="col-md-2">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body" id="day1">
                             <h5 class="card-title">Day 1</h5>
                             <p>img placeholder</p>
                             <p class="card-text">Temp: __</p>
@@ -58,7 +58,7 @@
                 </div>
                 <div class="col-md-2">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body" id="day2">
                             <h5 class="card-title">Day 2</h5>
                             <p>img placeholder</p>
                             <p class="card-text">Temp: __ </p>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="col-md-2">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body" id="day3">
                             <h5 class="card-title">Day 3</h5>
                             <p>img placeholder</p>
                             <p class="card-text">Temp: __</p>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="col-md-2">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body" id="day4">
                             <h5 class="card-title">Day 4</h5>
                             <p>img placeholder</p>
                             <p class="card-text">Temp: __</p>
@@ -91,19 +91,8 @@
                 </div>
                 <div class="col-md-2">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body" id="day5">
                             <h5 class="card-title">Day 5</h5>
-                            <p>img placeholder</p>
-                            <p class="card-text">Temp: __</p>
-                            <p class="card-text">Wind: __</p>
-                            <p class="card-text">Humidity: __</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Day 6</h5>
                             <p>img placeholder</p>
                             <p class="card-text">Temp: __</p>
                             <p class="card-text">Wind: __</p>
@@ -118,6 +107,7 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.6/dayjs.min.js"></script>
 </body>
 
 <html/>
