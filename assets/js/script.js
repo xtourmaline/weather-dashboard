@@ -1,6 +1,30 @@
 const apiKey = "8c8324b39583c855b4fe51feb2f0e639";
 let btnSearch = $("#search");
 
+function saveCityInput(cityInput) {
+    const cityInputs = JSON.parse(localStorage.getItem("cityInputs")) || [];
+
+    // checks whether the city is in the list, prevents duplicates
+    if (!cityInputs.includes(cityInput)) {
+        cityInputs.push(cityInput);
+        localStorage.setItem("cityInputs", JSON.stringify(cityInputs));
+    }
+
+    // Update the displayed city inputs
+    displayCityInputs(cityInputs);
+}
+
+// function to display saved city inputs
+function displayCityInputs(inputs) {
+    const cityList = $("#search-list");
+    cityList.empty()
+    inputs.forEach(input => {
+        cityList.append(`<button>${input}</button>`);
+    });
+}
+
+displayCityInputs(JSON.parse(localStorage.getItem("cityInputs")) || []);
+
 // occurs when button is pressed
 btnSearch.on("click", function () {
     let cityInput = $("#city").val();
@@ -19,6 +43,9 @@ btnSearch.on("click", function () {
 
                 // calls function getWeather
                 getWeather(lon, lat, apiKey);
+
+                // Save the city input to local storage
+                saveCityInput(name);
 
                 // displays the city name
                 $("#city-name").text(name);
