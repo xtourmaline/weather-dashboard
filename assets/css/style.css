@@ -50,10 +50,12 @@ button:hover {
     margin: 10px 0px;
     background-color: var(--med);
     color: var(--dark);
+    border: solid transparent;
 }
 
 .btn-primary:hover {
     background-color: #9BBEC8;
+    border: solid transparent;
 }
 
 #left {
