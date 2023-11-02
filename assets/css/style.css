@@ -1,6 +1,18 @@
+/* Universal Selectors */
 * {
     margin: 0px;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: aliceblue;
+}
+
+:root {
+    --dark: #164863;
+    --med: #427D9D;
+    --light: #DDF2FD;
+}
+
+body{
+    background-color: var(--med);
 }
 
 h1 {
@@ -11,14 +23,38 @@ h2 {
     margin: 10px 15px;
 }
 
+.card {
+    margin: 0px 0px 15px 0px;
+}
+
+/* Left Side of Page */
 form{
     margin: 15px;
 }
 button {
-    margin: 10px 0px;
-    width: 100%
+    margin: 10px 0px 0px 15px;
+    width: 100%;
+    border-radius: 5px;
+    border: solid transparent;
+    background-color: var(--med);
 }
 
-.card {
-    margin: 0px 0px 15px 0px;
+.btn-primary {
+    margin: 10px 0px;
+}
+
+#left {
+    background-color: var(--dark);
+}
+
+#search-list {
+    text-align: center;
+    margin-right: 20px;
+  }
+
+/* Right Side of Page */
+
+
+.futureForcastCard {
+    background-color: var(--dark);
 }

@@ -35,7 +35,7 @@ function displayCityInputs(inputs) {
     inputs.reverse();
 
     inputs.forEach(input => {
-        cityList.prepend(`<button>${input}</button>`);
+        cityList.prepend(`<button class="historyBtn">${input}</button>`);
     });
 }
 
