@@ -1,6 +1,7 @@
 const apiKey = "8c8324b39583c855b4fe51feb2f0e639";
 let btnSearch = $("#search");
 
+// FUNCTION: saves city into local storage
 function saveCityInput(cityInput) {
     let cityInputs = JSON.parse(localStorage.getItem("cityInputs")) || [];
 
@@ -26,7 +27,7 @@ function saveCityInput(cityInput) {
     displayCityInputs(cityInputs);
 }
 
-// function to display saved city inputs
+// FUNCTION: to display saved city inputs
 function displayCityInputs(inputs) {
     const cityList = $("#search-list");
     cityList.empty();
@@ -38,6 +39,7 @@ function displayCityInputs(inputs) {
     });
 }
 
+// FUNCTION: gets the necessary city and calls getLocation function to use for getWeather function
 function search() {
     let cityInput = $("#city").val();
 
@@ -53,21 +55,25 @@ function search() {
                 // calls function getWeather
                 getWeather(lon, lat, apiKey);
 
-                // Save the city input to local storage
+                // saves the city input to local storage
                 saveCityInput(name);
 
                 // displays the city name
                 $("#city-name").text(name);
+
+                // clears input field
+                $("#city").val("");
             })
+
             .catch(error => {
                 console.error("Error:", error);
             });
     }
 }
 
-// getting the lon, lat, and name from the API response
+// FUNCTION: getting the lon, lat, and name from the API response
 function getLocation(cityInput, apiKey) {
-    let cityCoordinates = `http://api.openweathermap.org/geo/1.0/direct?q=${cityInput}&limit=1&appid=${apiKey}`;
+    const cityCoordinates = `http://api.openweathermap.org/geo/1.0/direct?q=${cityInput}&limit=1&appid=${apiKey}`;
     
     // returns the fetch promise
     return fetch(cityCoordinates)
@@ -86,9 +92,9 @@ function getLocation(cityInput, apiKey) {
         });
 }
 
-// getting the weather and also displaying it
+// FUNCTION: getting the weather and also displaying it
 function getWeather(lon, lat, apiKey) {
-    let weather = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+    const weather = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
     fetch(weather)
         .then(function (response) {
@@ -97,7 +103,7 @@ function getWeather(lon, lat, apiKey) {
         .then(function (data) {
             let date = `
                 <p>${dayjs(data.list[0].dt_txt).format("MM/DD/YYYY")}</p>
-            `
+            `;
 
             let forecastContent = `
                 <img src="http://openweathermap.org/img/w/${data.list[0].weather[0].icon}.png">
@@ -131,6 +137,9 @@ function getWeather(lon, lat, apiKey) {
 }
 
 
+// MAIN CODE
+
+// displays the search history
 displayCityInputs(JSON.parse(localStorage.getItem("cityInputs")) || []);
 
 // when search button is pressed
