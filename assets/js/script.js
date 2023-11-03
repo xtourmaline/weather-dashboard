@@ -108,7 +108,7 @@ function getWeather(lon, lat, apiKey) {
             let forecastContent = `
                 <img src="https://openweathermap.org/img/w/${data.list[0].weather[0].icon}.png">
                 <p class="card-text">Temp: ${(((data.list[0].main.temp - 273.15) * 9/5) + 32).toFixed(2)} ºF</p>
-                <p class="card-text">Wind: ${data.list[0].wind.speed} mph</p>
+                <p class="card-text">Wind: ${(data.list[0].wind.speed).toFixed(2)} mph</p>
                 <p class="card-text">Humidity: ${data.list[0].main.humidity} g/kg</p>
             `;
 
@@ -127,7 +127,7 @@ function getWeather(lon, lat, apiKey) {
                     <p class="card-text"> ${newDate.format("MM/DD/YYYY")} </p>
                     <img src="https://openweathermap.org/img/w/${data.list[count].weather[0].icon}.png">
                     <p class="card-text">Temp: ${(((data.list[count].main.temp - 273.15) * 9/5) + 32).toFixed(2)} ºF</p>
-                    <p class="card-text">Wind: ${data.list[count].wind.speed} mph</p>
+                    <p class="card-text">Wind: ${(data.list[count].wind.speed).toFixed(2)} mph</p>
                     <p class="card-text">Humidity: ${data.list[count].main.humidity} g/kg</p>
                 `;
 
